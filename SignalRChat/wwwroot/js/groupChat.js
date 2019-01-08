@@ -12,14 +12,10 @@ connection.on("Send", function (message) {
     document.getElementById("messagesList").appendChild(li);
 });
 document.getElementById("groupmsg").addEventListener("click", async (event) => {
-    var userObj = @Model.userName
-
-
-    console.log(userObj+" ****");
-    var groupName = document.getElementById("group-name").value;
+    //var groupName = document.getElementById("group-name").value;
     var groupMsg = document.getElementById("group-message-text").value;
     try {
-        await connection.invoke("SendMessageToGroup", groupName, groupMsg);
+        await connection.invoke("SendMessageToGroup", userName, groupName, groupMsg);
     }
     catch (e) {
         console.error(e.toString());
@@ -28,11 +24,11 @@ document.getElementById("groupmsg").addEventListener("click", async (event) => {
 });
 document.getElementById("join-group").addEventListener("click", async (event) => {
 
-    var groupName = document.getElementById("group-name").value;
+    //var groupName = document.getElementById("group-name").value;
 
     try {
 
-        await connection.invoke("AddToGroup", groupName);
+        await connection.invoke("AddToGroup", userName, groupName);
     }
     catch (e) {
         console.error(e.toString());
@@ -40,9 +36,9 @@ document.getElementById("join-group").addEventListener("click", async (event) =>
     event.preventDefault();
 });
 document.getElementById("leave-group").addEventListener("click", async (event) => {
-    var groupName = document.getElementById("group-name").value;
+    //var groupName = document.getElementById("group-name").value;
     try {
-        await connection.invoke("RemoveFromGroup", groupName);
+        await connection.invoke("RemoveFromGroup", userName, groupName);
     }
     catch (e) {
         console.error(e.toString());
