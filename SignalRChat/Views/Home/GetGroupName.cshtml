@@ -1,0 +1,37 @@
+﻿@using SignalRChat.viewModel
+@using SignalRChat.Models
+
+@model GroupUser
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetGroupName</title>
+</head>
+<body>
+    @Html.ValidationSummary()
+    <form action="@Url.Action("Index")" method="post">
+        @*<input type="text" placeholder="Insert user name" asp-for="userName" required name="userName" />*@
+        <div class="form-control">
+            <label asp-for="userName">User Name :</label>
+            <input asp-for="userName" class="form-control" name="userName" required />
+            <span asp-validation-for="userName"></span>
+        </div>
+        <div>
+            @Html.DropDownList("groupName",
+                  Html.GetEnumSelectList<Group>(),
+                         "Select Group",new { @class = "form-control" })
+        </div>
+        @Html.AntiForgeryToken()
+
+        <input type="submit" style="background-color:aquamarine" value="Enter" />
+
+    </form>
+</body>
+</html>
